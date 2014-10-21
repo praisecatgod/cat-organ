@@ -5,3 +5,9 @@ body{
   background: -moz-linear-gradient(bottom right, cyan, magenta); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to bottom right, cyan , magenta); /* Standard syntax */
 }
+
+h1, h2, h3, h4, h5, h6
+{
+
+  font-family: Comic Sans, Comic Sans MS, cursive;
+}
