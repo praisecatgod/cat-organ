@@ -1,7 +1,8 @@
 var canvasWidth;
 var canvasHeight;
 var canvas;
-var context;
+var audioContext;
+var meowLoader;
 
 function init() {
 
@@ -265,16 +266,88 @@ function init() {
   canvas.addChild(b_2);
 
 
-  var context;
   window.addEventListener('load', init, false);
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+  audioContext = new AudioContext();
 
 
-  try {
-    // Fix up for prefixing
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-    context = new AudioContext();
-  } catch (e) {
-    alert('lmao, are you using ie???');
-  }
+  _01.bind("click tap", function() {
+    loadNote("01");
+  });
 
+  _02.bind("click tap", function() {
+    loadNote("02");
+  });
+
+  _03.bind("click tap", function() {
+    loadNote("03");
+  });
+
+  _04.bind("click tap", function() {
+    loadNote("04");
+  });
+  _05.bind("click tap", function() {
+    loadNote("05");
+  });
+  _06.bind("click tap", function() {
+    loadNote("06");
+  });
+
+  _07.bind("click tap", function() {
+    loadNote("07");
+  });
+
+  _08.bind("click tap", function() {
+    loadNote("08");
+  });
+
+  _09.bind("click tap", function() {
+    loadNote("09");
+  });
+
+  _10.bind("click tap", function() {
+    loadNote("10");
+  });
+
+  _11.bind("click tap", function() {
+    loadNote("11");
+  });
+
+  _12.bind("click tap", function() {
+    loadNote("12");
+  });
+  _13.bind("click tap", function() {
+    loadNote("13");
+  });
+  _14.bind("click tap", function() {
+    loadNote("14");
+  });
+  _15.bind("click tap", function() {
+    loadNote("15");
+  });
+
+
+
+}
+
+function loadNote(note) {
+  var request = new XMLHttpRequest();
+  request.open("GET", "../audio/spot/" + note + ".wav", true);
+  request.responseType = "arraybuffer";
+  request.onload = function() {
+    audioContext.decodeAudioData(request.response, function(buffer) {
+      playSoundBuffer = buffer;
+      playSound();
+    }, function(error) {
+      console.error("decodeAudioData error", error);
+    });
+  };
+  request.send();
+}
+
+function playSound() {
+  var source = audioContext.createBufferSource();
+  source.buffer = playSoundBuffer;
+  source.connect(audioContext.destination);
+  source.start(0);
 }
