@@ -673,7 +673,7 @@ function playSound() {
   source.connect(gainNode);
   gainNode.connect(audioContext.destination);
   //source.connect(audioContext.destination);
-
+console.log(filterToggle);
   switch (filterToggle) {
     case 0:
       source.start(0);
@@ -683,7 +683,8 @@ function playSound() {
       gainNode.connect(filter);
       filter.connect(audioContext.destination);
       filter.type = 0; // Low-pass filter. See BiquadFilterNode docs
-      filter.frequency.value = 0; // Set cutoff to 440 HZ
+      filter.Q.value = 10;
+      filter.frequency.value = 200; // Set cutoff to 440 HZ
       source.start(0);
 
       break;
@@ -692,6 +693,8 @@ function playSound() {
       gainNode.connect(filter);
       filter.connect(audioContext.destination);
       filter.type = 4; // Low-pass filter. See BiquadFilterNode docs
+      filter.Q.value = 20;
+
       filter.frequency.value = 1000; // Set cutoff to 440 HZ
       source.start(0);
       break;
@@ -700,6 +703,8 @@ function playSound() {
       gainNode.connect(filter);
       filter.connect(audioContext.destination);
       filter.type = 2; // Low-pass filter. See BiquadFilterNode docs
+      filter.Q.value = 30;
+
       filter.frequency.value = 100; // Set cutoff to 440 HZ
       source.start(0);
       break;
@@ -708,6 +713,8 @@ function playSound() {
       gainNode.connect(filter);
       filter.connect(audioContext.destination);
       filter.type = 5; // Low-pass filter. See BiquadFilterNode docs
+      filter.Q.value = 40;
+
       filter.frequency.value = 600; // Set cutoff to 440 HZ
       source.start(0);
       break;
