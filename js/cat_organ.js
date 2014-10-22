@@ -4,6 +4,9 @@ var canvas;
 var audioContext;
 var meowLoader;
 
+var gainNode;
+var filterToggle;
+
 function init() {
 
   var canvas = oCanvas.create({
@@ -214,6 +217,15 @@ function init() {
     stroke: "outside 5px #660066"
   });
 
+  var p_0 = canvas.display.rectangle({
+    x: 450,
+    y: 275,
+    width: 105,
+    height: 50,
+    fill: "#676cff",
+    stroke: "outside 5px #660066"
+  });
+
 
   var b_1 = canvas.display.rectangle({
     x: 575,
@@ -257,6 +269,7 @@ function init() {
   canvas.addChild(b_vol_plus);
   canvas.addChild(b_vol_minus);
 
+  canvas.addChild(p_0);
   canvas.addChild(p_1);
   canvas.addChild(p_2);
   canvas.addChild(p_3);
@@ -269,6 +282,8 @@ function init() {
   window.addEventListener('load', init, false);
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
   audioContext = new AudioContext();
+  gainNode = audioContext.createGain();
+  filterToggle = 0;
 
 
   _01.bind("click tap", function() {
@@ -326,6 +341,30 @@ function init() {
     loadNote("15");
   });
 
+  p_vol_plus.bind("click tap", function() {
+    gainNode.gain.value += 0.5;
+  });
+  p_vol_minus.bind("click tap", function() {
+    gainNode.gain.value -= 0.5;
+  });
+
+
+  p_0.bind("click tap", function() {
+    filterToggle = 0;
+  });
+  p_1.bind("click tap", function() {
+    filterToggle = 1;
+  });
+  p_2.bind("click tap", function() {
+    filterToggle = 2;
+  });
+  p_3.bind("click tap", function() {
+    filterToggle = 3;
+  });
+  p_4.bind("click tap", function() {
+    filterToggle = 4;
+  });
+
 
 
 }
@@ -348,6 +387,46 @@ function loadNote(note) {
 function playSound() {
   var source = audioContext.createBufferSource();
   source.buffer = playSoundBuffer;
-  source.connect(audioContext.destination);
-  source.start(0);
+  source.connect(gainNode);
+  gainNode.connect(audioContext.destination);
+  //source.connect(audioContext.destination);
+
+  switch (filterToggle) {
+    case 0:
+      source.start(0);
+      break;
+    case 1:
+      filter = audioContext.createBiquadFilter();
+      gainNode.connect(filter);
+      filter.connect(audioContext.destination);
+      filter.type = 0; // Low-pass filter. See BiquadFilterNode docs
+      filter.frequency.value = 440; // Set cutoff to 440 HZ
+      source.start(0);
+      break;
+    case 2:
+      filter = audioContext.createBiquadFilter();
+      gainNode.connect(filter);
+      filter.connect(audioContext.destination);
+      filter.type = 1; // Low-pass filter. See BiquadFilterNode docs
+      filter.frequency.value = 880; // Set cutoff to 440 HZ
+      source.start(0);
+      break;
+    case 3:
+      filter = audioContext.createBiquadFilter();
+      gainNode.connect(filter);
+      filter.connect(audioContext.destination);
+      filter.type = 2; // Low-pass filter. See BiquadFilterNode docs
+      filter.frequency.value = 220; // Set cutoff to 440 HZ
+      source.start(0);
+      break;
+    case 4:
+      filter = audioContext.createBiquadFilter();
+      gainNode.connect(filter);
+      filter.connect(audioContext.destination);
+      filter.type = 3; // Low-pass filter. See BiquadFilterNode docs
+      filter.frequency.value = 110; // Set cutoff to 440 HZ
+      source.start(0);
+      break;
+  }
+  //source.start(0);
 }
