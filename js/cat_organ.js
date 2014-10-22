@@ -152,6 +152,17 @@ function init() {
     stroke: "outside 5px #660066"
   });
 
+  var p_vol_text = canvas.display.text({
+    x: 500,
+    y: 50,
+    origin: {
+      x: "center",
+      y: "top"
+    },
+    font: "bold 20px Comic Sans",
+    text: "piano volume",
+    fill: "#0aa"
+  });
   var p_vol_plus = canvas.display.rectangle({
     x: 450,
     y: 90,
@@ -159,6 +170,17 @@ function init() {
     height: 50,
     fill: "#67d4ff",
     stroke: "outside 5px #660066"
+  });
+  var p_vol_plus_text = canvas.display.text({
+    x: 475,
+    y: 100,
+    origin: {
+      x: "center",
+      y: "top"
+    },
+    font: "bold 30px Comic Sans",
+    text: "+",
+    fill: "#0aa"
   });
   var p_vol_minus = canvas.display.rectangle({
     x: 505,
@@ -168,7 +190,30 @@ function init() {
     fill: "#67d4ff",
     stroke: "outside 5px #660066"
   });
+  var p_vol_minus_text = canvas.display.text({
+    x: 525,
+    y: 100,
+    origin: {
+      x: "center",
+      y: "top"
+    },
+    font: "bold 30px Comic Sans",
+    text: "-",
+    fill: "#0aa"
+  });
 
+
+  var b_vol_text = canvas.display.text({
+    x: 625,
+    y: 50,
+    origin: {
+      x: "center",
+      y: "top"
+    },
+    font: "bold 20px Comic Sans",
+    text: "beat volume",
+    fill: "#0aa"
+  });
   var b_vol_plus = canvas.display.rectangle({
     x: 575,
     y: 90,
@@ -177,6 +222,17 @@ function init() {
     fill: "#67ffb8",
     stroke: "outside 5px #660066"
   });
+  var b_vol_plus_text = canvas.display.text({
+    x: 600,
+    y: 100,
+    origin: {
+      x: "center",
+      y: "top"
+    },
+    font: "bold 30px Comic Sans",
+    text: "+",
+    fill: "#0aa"
+  });
   var b_vol_minus = canvas.display.rectangle({
     x: 630,
     y: 90,
@@ -184,6 +240,29 @@ function init() {
     height: 50,
     fill: "#67ffb8",
     stroke: "outside 5px #660066"
+  });
+  var b_vol_minus_text = canvas.display.text({
+    x: 650,
+    y: 100,
+    origin: {
+      x: "center",
+      y: "top"
+    },
+    font: "bold 30px Comic Sans",
+    text: "-",
+    fill: "#0aa"
+  });
+
+  var piano_text = canvas.display.text({
+    x: 500,
+    y: 150,
+    origin: {
+      x: "center",
+      y: "top"
+    },
+    font: "bold 20px Comic Sans",
+    text: "piano filters",
+    fill: "#0aa"
   });
 
   var p_1 = canvas.display.rectangle({
@@ -229,6 +308,17 @@ function init() {
   });
 
 
+  var beat_text = canvas.display.text({
+    x: 600,
+    y: 150,
+    origin: {
+      x: "center",
+      y: "top"
+    },
+    font: "bold 20px Comic Sans",
+    text: "sick beats",
+    fill: "#0aa"
+  });
   var b_1 = canvas.display.rectangle({
     x: 575,
     y: 175,
@@ -268,14 +358,26 @@ function init() {
 
   canvas.addChild(p_vol_plus);
   canvas.addChild(p_vol_minus);
+  canvas.addChild(p_vol_plus_text);
+  canvas.addChild(p_vol_minus_text);
+  canvas.addChild(p_vol_text);
+
+  canvas.addChild(b_vol_text);
   canvas.addChild(b_vol_plus);
   canvas.addChild(b_vol_minus);
 
+  canvas.addChild(b_vol_plus_text);
+  canvas.addChild(b_vol_minus_text);
+
+
+  canvas.addChild(piano_text);
   canvas.addChild(p_0);
   canvas.addChild(p_1);
   canvas.addChild(p_2);
   canvas.addChild(p_3);
   canvas.addChild(p_4);
+
+  canvas.addChild(beat_text);
 
   canvas.addChild(b_1);
   canvas.addChild(b_2);
@@ -345,12 +447,163 @@ function init() {
     loadNote("15");
   });
 
+  _01.bind("mousedown", function() {
+    this.fill = "#5d17e9";
+    canvas.redraw();
+  });
+
+  _01.bind("mouseup", function() {
+    this.fill = "#FF66CC";
+    canvas.redraw();
+  });
+
+
+  _02.bind("mousedown", function() {
+    this.fill = "#5d17e9";
+    canvas.redraw();
+  });
+
+  _02.bind("mouseup", function() {
+    this.fill = "#FF66CC";
+    canvas.redraw();
+  });
+
+  _03.bind("mousedown", function() {
+    this.fill = "#5d17e9";
+    canvas.redraw();
+  });
+
+  _03.bind("mouseup", function() {
+    this.fill = "#FF66CC";
+    canvas.redraw();
+  });
+
+  _04.bind("mousedown", function() {
+    this.fill = "#5d17e9";
+    canvas.redraw();
+  });
+
+  _04.bind("mouseup", function() {
+    this.fill = "#FF66CC";
+    canvas.redraw();
+  });
+
+  _05.bind("mousedown", function() {
+    this.fill = "#5d17e9";
+    canvas.redraw();
+  });
+
+  _05.bind("mouseup", function() {
+    this.fill = "#FF66CC";
+    canvas.redraw();
+  });
+
+  _06.bind("mousedown", function() {
+    this.fill = "#5d17e9";
+    canvas.redraw();
+  });
+
+  _06.bind("mouseup", function() {
+    this.fill = "#FF66CC";
+    canvas.redraw();
+  });
+
+  _07.bind("mousedown", function() {
+    this.fill = "#5d17e9";
+    canvas.redraw();
+  });
+
+  _07.bind("mouseup", function() {
+    this.fill = "#FF66CC";
+    canvas.redraw();
+  });
+
+  _08.bind("mousedown", function() {
+    this.fill = "#5d17e9";
+    canvas.redraw();
+  });
+
+  _08.bind("mouseup", function() {
+    this.fill = "#FF66CC";
+    canvas.redraw();
+  });
+
+  _09.bind("mousedown", function() {
+    this.fill = "#5d17e9";
+    canvas.redraw();
+  });
+
+  _09.bind("mouseup", function() {
+    this.fill = "#FF66CC";
+    canvas.redraw();
+  });
+
+  _10.bind("mousedown", function() {
+    this.fill = "#5d17e9";
+    canvas.redraw();
+  });
+
+  _10.bind("mouseup", function() {
+    this.fill = "#FF66CC";
+    canvas.redraw();
+  });
+
+  _11.bind("mousedown", function() {
+    this.fill = "#5d17e9";
+    canvas.redraw();
+  });
+
+  _11.bind("mouseup", function() {
+    this.fill = "#FF66CC";
+    canvas.redraw();
+  });
+
+  _12.bind("mousedown", function() {
+    this.fill = "#5d17e9";
+    canvas.redraw();
+  });
+
+  _12.bind("mouseup", function() {
+    this.fill = "#FF66CC";
+    canvas.redraw();
+  });
+
+  _13.bind("mousedown", function() {
+    this.fill = "#5d17e9";
+    canvas.redraw();
+  });
+
+  _13.bind("mouseup", function() {
+    this.fill = "#FF66CC";
+    canvas.redraw();
+  });
+  _14.bind("mousedown", function() {
+    this.fill = "#5d17e9";
+    canvas.redraw();
+  });
+
+  _14.bind("mouseup", function() {
+    this.fill = "#FF66CC";
+    canvas.redraw();
+  });
+
+  _15.bind("mousedown", function() {
+    this.fill = "#5d17e9";
+    canvas.redraw();
+  });
+
+  _15.bind("mouseup", function() {
+    this.fill = "#FF66CC";
+    canvas.redraw();
+  });
+
   p_vol_plus.bind("click tap", function() {
     gainNode.gain.value += 0.1;
   });
   p_vol_minus.bind("click tap", function() {
     gainNode.gain.value -= 0.1;
   });
+
 
 
   p_0.bind("click tap", function() {
@@ -376,12 +629,12 @@ function init() {
     gainNodeDrums.gain.value -= 0.1;
   });
 
+
   b_1.bind("click tap", function() {
     if (looping !== true) {
       loadDrum(1);
       looping = true;
     } else {
-      stopDrum(1);
       looping = false;
     }
   });
@@ -390,10 +643,10 @@ function init() {
       loadDrum(2);
       looping = true;
     } else {
-      stopDrum(2);
       looping = false;
     }
   });
+
 
 
 
@@ -486,9 +739,4 @@ function playDrum() {
   gainNodeDrums.connect(audioContext.destination);
   source.loop = true;
   source.start(0);
-}
-
-function stopDrum(beat) {
-  var source = audioContext.createBufferSource();
-source.stop();
 }
