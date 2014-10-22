@@ -5,7 +5,9 @@ var audioContext;
 var meowLoader;
 
 var gainNode;
+var gainNodeDrums;
 var filterToggle;
+var looping;
 
 function init() {
 
@@ -283,7 +285,9 @@ function init() {
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
   audioContext = new AudioContext();
   gainNode = audioContext.createGain();
+  gainNodeDrums = audioContext.createGain();
   filterToggle = 0;
+  looping = false
 
 
   _01.bind("click tap", function() {
@@ -342,10 +346,10 @@ function init() {
   });
 
   p_vol_plus.bind("click tap", function() {
-    gainNode.gain.value += 0.5;
+    gainNode.gain.value += 0.1;
   });
   p_vol_minus.bind("click tap", function() {
-    gainNode.gain.value -= 0.5;
+    gainNode.gain.value -= 0.1;
   });
 
 
@@ -363,6 +367,32 @@ function init() {
   });
   p_4.bind("click tap", function() {
     filterToggle = 4;
+  });
+
+  b_vol_plus.bind("click tap", function() {
+    gainNodeDrums.gain.value += 0.1;
+  });
+  b_vol_minus.bind("click tap", function() {
+    gainNodeDrums.gain.value -= 0.1;
+  });
+
+  b_1.bind("click tap", function() {
+    if (looping !== true) {
+      loadDrum(1);
+      looping = true;
+    } else {
+      stopDrum(1);
+      looping = false;
+    }
+  });
+  b_2.bind("click tap", function() {
+    if (looping !== true) {
+      loadDrum(2);
+      looping = true;
+    } else {
+      stopDrum(2);
+      looping = false;
+    }
   });
 
 
@@ -400,15 +430,16 @@ function playSound() {
       gainNode.connect(filter);
       filter.connect(audioContext.destination);
       filter.type = 0; // Low-pass filter. See BiquadFilterNode docs
-      filter.frequency.value = 440; // Set cutoff to 440 HZ
+      filter.frequency.value = 0; // Set cutoff to 440 HZ
       source.start(0);
+
       break;
     case 2:
       filter = audioContext.createBiquadFilter();
       gainNode.connect(filter);
       filter.connect(audioContext.destination);
-      filter.type = 1; // Low-pass filter. See BiquadFilterNode docs
-      filter.frequency.value = 880; // Set cutoff to 440 HZ
+      filter.type = 4; // Low-pass filter. See BiquadFilterNode docs
+      filter.frequency.value = 1000; // Set cutoff to 440 HZ
       source.start(0);
       break;
     case 3:
@@ -416,17 +447,48 @@ function playSound() {
       gainNode.connect(filter);
       filter.connect(audioContext.destination);
       filter.type = 2; // Low-pass filter. See BiquadFilterNode docs
-      filter.frequency.value = 220; // Set cutoff to 440 HZ
+      filter.frequency.value = 100; // Set cutoff to 440 HZ
       source.start(0);
       break;
     case 4:
       filter = audioContext.createBiquadFilter();
       gainNode.connect(filter);
       filter.connect(audioContext.destination);
-      filter.type = 3; // Low-pass filter. See BiquadFilterNode docs
-      filter.frequency.value = 110; // Set cutoff to 440 HZ
+      filter.type = 5; // Low-pass filter. See BiquadFilterNode docs
+      filter.frequency.value = 600; // Set cutoff to 440 HZ
       source.start(0);
       break;
   }
   //source.start(0);
+
+}
+
+function loadDrum(beat) {
+  var request = new XMLHttpRequest();
+  request.open("GET", "../audio/drum_" + beat + ".mp3", true);
+  request.responseType = "arraybuffer";
+  request.onload = function() {
+    audioContext.decodeAudioData(request.response, function(buffer) {
+      playSoundBuffer = buffer;
+      playDrum();
+    }, function(error) {
+      console.error("decodeAudioData error", error);
+    });
+  };
+  request.send();
+}
+
+function playDrum() {
+  var source = audioContext.createBufferSource();
+  source.buffer = playSoundBuffer;
+  //source.connect(audioContext.destination);
+  source.connect(gainNodeDrums);
+  gainNodeDrums.connect(audioContext.destination);
+  source.loop = true;
+  source.start(0);
+}
+
+function stopDrum(beat) {
+  var source = audioContext.createBufferSource();
+source.stop();
 }
