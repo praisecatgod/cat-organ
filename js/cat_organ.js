@@ -11,6 +11,7 @@ var looping;
 
 function init() {
 
+
   var canvas = oCanvas.create({
     canvas: "#canvas",
     background: "#CCCCFF",
@@ -20,133 +21,133 @@ function init() {
   var _01 = canvas.display.rectangle({
     x: 25,
     y: 90,
-    width: 25,
+    width: 50,
     height: 250,
     fill: "#FF66CC",
     stroke: "outside 5px #660066"
   });
 
   var _02 = canvas.display.rectangle({
-    x: 50,
+    x: 60,
     y: 90,
     width: 25,
-    height: 250,
-    fill: "#FF66CC",
+    height: 125,
+    fill: "#3c0c3e",
     stroke: "outside 5px #660066"
   });
 
   var _03 = canvas.display.rectangle({
     x: 75,
     y: 90,
-    width: 25,
+    width: 50,
     height: 250,
     fill: "#FF66CC",
     stroke: "outside 5px #660066"
   });
 
   var _04 = canvas.display.rectangle({
-    x: 100,
+    x: 110,
     y: 90,
     width: 25,
-    height: 250,
-    fill: "#FF66CC",
+    height: 125,
+    fill: "#3c0c3e",
     stroke: "outside 5px #660066"
   });
 
   var _05 = canvas.display.rectangle({
     x: 125,
     y: 90,
-    width: 25,
+    width: 50,
     height: 250,
     fill: "#FF66CC",
     stroke: "outside 5px #660066"
   });
 
   var _06 = canvas.display.rectangle({
-    x: 150,
+    x: 175,
     y: 90,
-    width: 25,
+    width: 50,
     height: 250,
     fill: "#FF66CC",
     stroke: "outside 5px #660066"
   });
 
   var _07 = canvas.display.rectangle({
-    x: 175,
+    x: 210,
     y: 90,
     width: 25,
-    height: 250,
-    fill: "#FF66CC",
+    height: 125,
+    fill: "#3c0c3e",
     stroke: "outside 5px #660066"
   });
 
   var _08 = canvas.display.rectangle({
-    x: 200,
+    x: 225,
     y: 90,
-    width: 25,
+    width: 50,
     height: 250,
     fill: "#FF66CC",
     stroke: "outside 5px #660066"
   });
 
   var _09 = canvas.display.rectangle({
-    x: 225,
+    x: 260,
     y: 90,
     width: 25,
-    height: 250,
-    fill: "#FF66CC",
+    height: 125,
+    fill: "#3c0c3e",
     stroke: "outside 5px #660066"
   });
 
   var _10 = canvas.display.rectangle({
-    x: 250,
+    x: 275,
     y: 90,
-    width: 25,
+    width: 50,
     height: 250,
     fill: "#FF66CC",
     stroke: "outside 5px #660066"
   });
 
   var _11 = canvas.display.rectangle({
-    x: 275,
+    x: 310,
     y: 90,
     width: 25,
-    height: 250,
-    fill: "#FF66CC",
+    height: 125,
+    fill: "#3c0c3e",
     stroke: "outside 5px #660066"
   });
 
   var _12 = canvas.display.rectangle({
-    x: 300,
+    x: 325,
     y: 90,
-    width: 25,
+    width: 50,
     height: 250,
     fill: "#FF66CC",
     stroke: "outside 5px #660066"
   });
 
   var _13 = canvas.display.rectangle({
-    x: 325,
+    x: 375,
     y: 90,
-    width: 25,
+    width: 50,
     height: 250,
     fill: "#FF66CC",
     stroke: "outside 5px #660066"
   });
 
   var _14 = canvas.display.rectangle({
-    x: 350,
+    x: 400,
     y: 90,
     width: 25,
-    height: 250,
-    fill: "#FF66CC",
+    height: 125,
+    fill: "#3c0c3e",
     stroke: "outside 5px #660066"
   });
 
   var _15 = canvas.display.rectangle({
-    x: 375,
+    x: 425,
     y: 90,
-    width: 25,
+    width: 50,
     height: 250,
     fill: "#FF66CC",
     stroke: "outside 5px #660066"
@@ -341,20 +342,24 @@ function init() {
 
 
   canvas.addChild(_01);
-  canvas.addChild(_02);
   canvas.addChild(_03);
-  canvas.addChild(_04);
+  canvas.addChild(_02);
   canvas.addChild(_05);
+  canvas.addChild(_04);
+
   canvas.addChild(_06);
-  canvas.addChild(_07);
   canvas.addChild(_08);
-  canvas.addChild(_09);
+  canvas.addChild(_07);
   canvas.addChild(_10);
-  canvas.addChild(_11);
+  canvas.addChild(_09);
+
+
   canvas.addChild(_12);
-  canvas.addChild(_13);
-  canvas.addChild(_14);
-  canvas.addChild(_15);
+  canvas.addChild(_11);
+
+//  canvas.addChild(_13);
+//  canvas.addChild(_14);
+//  canvas.addChild(_15);
 
   canvas.addChild(p_vol_plus);
   canvas.addChild(p_vol_minus);
@@ -464,7 +469,7 @@ function init() {
   });
 
   _02.bind("mouseup", function() {
-    this.fill = "#FF66CC";
+    this.fill = "#3c0c3e";
     canvas.redraw();
   });
 
@@ -484,7 +489,7 @@ function init() {
   });
 
   _04.bind("mouseup", function() {
-    this.fill = "#FF66CC";
+    this.fill = "#3c0c3e";
     canvas.redraw();
   });
 
@@ -514,7 +519,7 @@ function init() {
   });
 
   _07.bind("mouseup", function() {
-    this.fill = "#FF66CC";
+    this.fill = "#3c0c3e";
     canvas.redraw();
   });
 
@@ -534,7 +539,7 @@ function init() {
   });
 
   _09.bind("mouseup", function() {
-    this.fill = "#FF66CC";
+    this.fill = "#3c0c3e";
     canvas.redraw();
   });
 
@@ -554,7 +559,7 @@ function init() {
   });
 
   _11.bind("mouseup", function() {
-    this.fill = "#FF66CC";
+    this.fill = "#3c0c3e";
     canvas.redraw();
   });
 
